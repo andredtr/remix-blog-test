@@ -1,4 +1,6 @@
 {
 	"editor.formatOnSave": true,
-	"editor.formatOnSaveMode": "modificationsIfAvailable"
+	"editor.formatOnSaveMode": "modificationsIfAvailable",
+	"typescript.validate.enable": true,
+	"javascript.validate.enable": true,
 }

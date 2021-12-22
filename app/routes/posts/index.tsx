@@ -1,4 +1,4 @@
-import { useLoaderData } from "remix";
+import { Link, useLoaderData } from "remix";
 
 export const loader = () => {
   return [
@@ -14,11 +14,18 @@ export const loader = () => {
 };
 
 export default function Posts() {
-const posts = useLoaderData();
+  const posts = useLoaderData();
+
   return (
     <div>
       <h1>Posts</h1>
-      <p>Hey this is a paragraph</p>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.slug}>
+            <Link to={post.slug}>{post.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
