@@ -4,6 +4,12 @@ import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import { marked } from "marked";
 
+type NewPost = {
+  title: string;
+  slug: string;
+  markdown: string;
+};
+
 export type Post = {
   slug: string;
   title: string;
@@ -60,4 +66,13 @@ export async function getPosts() {
       };
     })
   );
+}
+
+export async function createPost(post: NewPost) {
+  const md = `---\ntitle: ${post.title}\n---\n\n${post.markdown}`;
+  await fs.writeFile(
+    path.join(postsPath, post.slug + ".md"),
+    md
+  );
+  return getPost(post.slug);
 }
